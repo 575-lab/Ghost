@@ -1,0 +1,36 @@
+<header class="dk-header" data-header>
+    <div class="dk-header-inner dk-container">
+        <a class="dk-brand" href="{{@site.url}}" aria-label="{{@site.title}}">
+            {{#if @site.logo}}
+                <img class="dk-brand-logo" src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}">
+            {{else}}
+                <span class="dk-brand-title">{{@site.title}}</span>
+            {{/if}}
+        </a>
+
+        <nav class="dk-nav" id="dk-nav" aria-label="{{t "Main"}}">
+            {{navigation}}
+        </nav>
+
+        <div class="dk-header-actions">
+            <button class="dk-icon-button" data-ghost-search aria-label="{{t "Search this site"}}">
+                <span class="material-symbols-sharp" aria-hidden="true">search</span>
+            </button>
+            {{#unless @site.members_enabled}}{{else}}
+                {{#if @member}}
+                    <a class="dk-button dk-button-ghost" href="#/portal/account">{{t "Account"}}</a>
+                {{else}}
+                    {{#unless @site.members_invite_only}}
+                        <a class="dk-button dk-button-ghost dk-hide-mobile" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                        <a class="dk-button dk-button-primary" href="#/portal/signup" data-portal="signup">{{t "Subscribe"}}</a>
+                    {{else}}
+                        <a class="dk-button dk-button-primary" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                    {{/unless}}
+                {{/if}}
+            {{/unless}}
+            <button class="dk-icon-button dk-menu-toggle" aria-controls="dk-nav" aria-expanded="false" aria-label="{{t "Menu"}}" data-menu-toggle>
+                <span class="material-symbols-sharp" aria-hidden="true">menu</span>
+            </button>
+        </div>
+    </div>
+</header>

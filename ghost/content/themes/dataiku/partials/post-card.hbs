@@ -1,0 +1,30 @@
+<article class="dk-card {{post_class}}">
+    <a class="dk-card-link" href="{{url}}">
+        <figure class="dk-card-image">
+            {{#if feature_image}}
+                <img
+                    srcset="{{img_url feature_image size="s"}} 320w,
+                            {{img_url feature_image size="m"}} 600w,
+                            {{img_url feature_image size="l"}} 960w"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 400px"
+                    src="{{img_url feature_image size="m"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                    loading="lazy">
+            {{else}}
+                <span class="dk-card-placeholder" aria-hidden="true"></span>
+            {{/if}}
+        </figure>
+        <div class="dk-card-body">
+            <p class="dk-label">
+                {{#if primary_tag}}{{primary_tag.name}}{{else}}{{t "Article"}}{{/if}}
+                {{#unless access}}<span class="dk-lock material-symbols-sharp" aria-label="{{t "Members only"}}">lock</span>{{/unless}}
+            </p>
+            <h3 class="dk-card-title">{{title}}</h3>
+            {{#if excerpt}}<p class="dk-card-excerpt">{{excerpt words="28"}}</p>{{/if}}
+            <p class="dk-card-meta dk-mono">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                {{#if reading_time}}<span aria-hidden="true">·</span> {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}{{/if}}
+            </p>
+        </div>
+    </a>
+</article>

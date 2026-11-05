@@ -1,0 +1,45 @@
+{{#if @site.members_enabled}}{{#unless @member}}{{#unless @site.members_invite_only}}
+<section class="dk-cta">
+    <div class="dk-cta-inner dk-container">
+        <div>
+            <p class="dk-label">{{t "Newsletter"}}</p>
+            <h2 class="dk-cta-title">{{@custom.signup_heading}}</h2>
+            <p class="dk-cta-text">{{@custom.signup_text}}</p>
+        </div>
+        <form class="dk-form" data-members-form="subscribe">
+            <label class="dk-visually-hidden" for="dk-footer-email">{{t "Your email address"}}</label>
+            <input id="dk-footer-email" class="dk-input" type="email" placeholder="{{t "Your email address"}}" required data-members-email>
+            <button class="dk-button dk-button-primary" type="submit">
+                <span class="dk-form-default">{{t "Subscribe"}}</span>
+                <span class="dk-form-loading">{{t "Subscribing…"}}</span>
+            </button>
+            <p class="dk-form-message dk-form-success">{{t "Check your inbox to confirm your subscription."}}</p>
+            <p class="dk-form-message dk-form-error">{{t "Something went wrong. Please try again."}}</p>
+        </form>
+    </div>
+</section>
+{{/unless}}{{/unless}}{{/if}}
+
+<footer class="dk-footer">
+    <div class="dk-footer-inner dk-container">
+        <div class="dk-footer-brand">
+            <a class="dk-brand" href="{{@site.url}}">
+                {{#if @site.logo}}
+                    <img class="dk-brand-logo" src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}">
+                {{else}}
+                    <span class="dk-brand-title">{{@site.title}}</span>
+                {{/if}}
+            </a>
+            {{#if @site.description}}<p class="dk-footer-description">{{@site.description}}</p>{{/if}}
+        </div>
+        <nav class="dk-footer-nav" aria-label="{{t "Footer"}}">
+            {{navigation type="secondary"}}
+        </nav>
+    </div>
+    <div class="dk-container">
+        <div class="dk-footer-meta">
+            <span>&copy; {{date format="YYYY"}} {{@site.title}}</span>
+            <a href="https://ghost.org/" target="_blank" rel="noopener">{{t "Powered by Ghost"}}</a>
+        </div>
+    </div>
+</footer>

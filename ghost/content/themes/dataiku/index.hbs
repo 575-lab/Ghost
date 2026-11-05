@@ -1,0 +1,52 @@
+{{!< default}}
+
+<main class="dk-main">
+    {{#is "home"}}{{#unless pagination.prev}}
+    <section class="dk-hero">
+        <div class="dk-hero-inner dk-container">
+            <div class="dk-hero-copy">
+                {{#if @custom.hero_label}}<p class="dk-label dk-label-accent">{{@custom.hero_label}}</p>{{/if}}
+                <h1 class="dk-hero-title">{{#if @custom.hero_heading}}{{@custom.hero_heading}}{{else}}{{@site.title}}{{/if}}</h1>
+                <p class="dk-hero-text">{{#if @custom.hero_text}}{{@custom.hero_text}}{{else}}{{@site.description}}{{/if}}</p>
+                {{#if @site.members_enabled}}{{#unless @member}}{{#unless @site.members_invite_only}}
+                    <div class="dk-hero-actions">
+                        <a class="dk-button dk-button-primary" href="#/portal/signup" data-portal="signup">{{t "Subscribe"}}
+                            <span class="material-symbols-sharp" aria-hidden="true">arrow_forward</span></a>
+                    </div>
+                {{/unless}}{{/unless}}{{/if}}
+            </div>
+            {{#if @custom.show_hero_illustration}}
+                <div class="dk-hero-art">{{> "hero-illustration"}}</div>
+            {{/if}}
+        </div>
+    </section>
+
+    {{#get "posts" filter="featured:true" include="tags" limit="1" as |featured|}}
+        {{#foreach featured}}
+            <section class="dk-featured dk-container">
+                <a class="dk-featured-link" href="{{url}}">
+                    {{#if feature_image}}
+                        <figure class="dk-featured-image">
+                            <img src="{{img_url feature_image size="l"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+                        </figure>
+                    {{/if}}
+                    <div class="dk-featured-body">
+                        <p class="dk-label">{{t "Featured"}}{{#if primary_tag}} · {{primary_tag.name}}{{/if}}</p>
+                        <h2 class="dk-featured-title">{{title}}</h2>
+                        <p class="dk-featured-excerpt">{{excerpt words="40"}}</p>
+                        <span class="dk-text-link">{{t "Read the story"}} <span class="material-symbols-sharp" aria-hidden="true">arrow_forward</span></span>
+                    </div>
+                </a>
+            </section>
+        {{/foreach}}
+    {{/get}}
+    {{/unless}}{{/is}}
+
+    <section class="dk-section dk-container">
+        <header class="dk-section-header">
+            <p class="dk-label">{{t "Latest"}}</p>
+            <h2 class="dk-section-title">{{t "Recent stories"}}</h2>
+        </header>
+        {{> "post-feed"}}
+    </section>
+</main>

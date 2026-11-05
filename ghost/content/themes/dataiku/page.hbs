@@ -1,0 +1,23 @@
+{{!< default}}
+
+{{#post}}
+<main class="dk-main">
+    <article class="dk-article {{post_class}}">
+        {{#match @page.show_title_and_feature_image}}
+            <header class="dk-article-header dk-canvas">
+                <h1 class="dk-article-title">{{title}}</h1>
+                {{#if custom_excerpt}}<p class="dk-article-excerpt">{{custom_excerpt}}</p>{{/if}}
+            </header>
+            {{#if feature_image}}
+                <figure class="dk-article-image dk-canvas">
+                    <img src="{{img_url feature_image size="xl"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+                    {{#if feature_image_caption}}<figcaption>{{feature_image_caption}}</figcaption>{{/if}}
+                </figure>
+            {{/if}}
+        {{/match}}
+        <section class="dk-content dk-canvas">
+            {{content}}
+        </section>
+    </article>
+</main>
+{{/post}}

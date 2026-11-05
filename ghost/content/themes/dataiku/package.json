@@ -1,0 +1,105 @@
+{
+  "name": "dataiku",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Ghost theme built on the Dataiku brand guidelines: Dark Green and Beige surfaces, Signifier/Untitled Sans/Söhne Mono typography and the approved Blue Grey → Green → Beige gradient.",
+  "keywords": [
+    "ghost-theme"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Dataiku",
+    "email": "hannes.hapke@dataiku.com",
+    "url": "https://www.dataiku.com/"
+  },
+  "scripts": {
+    "test": "gscan --fatal --verbose ."
+  },
+  "config": {
+    "card_assets": true,
+    "custom": {
+      "hero_heading": {
+        "type": "text",
+        "default": "The Platform for AI Success",
+        "description": "Large headline on the homepage. Use sentence case.",
+        "group": "homepage"
+      },
+      "hero_text": {
+        "type": "text",
+        "description": "Defaults to the site description when empty",
+        "group": "homepage"
+      },
+      "hero_label": {
+        "type": "text",
+        "default": "Insights",
+        "description": "Small mono label above the headline",
+        "group": "homepage"
+      },
+      "show_hero_illustration": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the gradient orbit illustration in the homepage hero",
+        "group": "homepage"
+      },
+      "footer_surface": {
+        "type": "select",
+        "options": [
+          "Dark Green",
+          "Core Black"
+        ],
+        "default": "Dark Green"
+      },
+      "signup_heading": {
+        "type": "text",
+        "default": "Stay ahead on enterprise AI",
+        "description": "Footer call to action heading"
+      },
+      "signup_text": {
+        "type": "text",
+        "default": "Practical stories on deploying AI at scale, delivered to your inbox.",
+        "description": "Footer call to action text"
+      },
+      "show_related_posts": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "code_theme": {
+        "type": "select",
+        "options": [
+          "Vivid",
+          "Brand",
+          "Midnight",
+          "Light"
+        ],
+        "default": "Vivid",
+        "description": "Syntax highlighting colours for code blocks",
+        "group": "post"
+      }
+    },
+    "image_sizes": {
+      "xs": {
+        "width": 160
+      },
+      "s": {
+        "width": 320
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 960
+      },
+      "xl": {
+        "width": 1200
+      },
+      "xxl": {
+        "width": 2000
+      }
+    },
+    "posts_per_page": 12
+  },
+  "engines": {
+    "ghost": ">=5.0.0"
+  }
+}
