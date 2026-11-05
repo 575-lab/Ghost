@@ -809,8 +809,9 @@ figcaption {
   overflow-x: auto;
   padding: 24px;
   border-radius: var(--dk-radius);
-  background: var(--dk-dark-green);
-  color: var(--dk-white);
+  border: 1px solid var(--code-border);
+  background: var(--code-bg);
+  color: var(--code-text);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -818,6 +819,165 @@ figcaption {
   padding: 0;
   background: none;
   color: inherit;
+}
+
+/* Code cards: language badge, copy button and Prism tokens.
+   Tokens use brand colours on Dark Green; every colour clears 4.5:1 against it. */
+.dk-code {
+  position: relative;
+  margin: 1.75em 0;
+}
+.dk-code pre {
+  margin: 0;
+  padding-top: 44px;
+}
+.dk-code-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 0 24px;
+  pointer-events: none;
+}
+.dk-code-lang {
+  font-family: var(--dk-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--code-label);
+}
+.dk-code-copy {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--code-button-border);
+  border-radius: var(--dk-radius);
+  background: transparent;
+  color: var(--code-button);
+  font-family: var(--dk-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.dk-code-copy:hover,
+.dk-code-copy:focus-visible {
+  border-color: var(--code-label);
+}
+.dk-code-copy .material-symbols-sharp {
+  font-size: 14px;
+}
+
+/* Code themes, chosen in Settings → Design → Post → Code theme.
+   Every token colour clears 5:1 contrast against its theme's background. */
+body {
+  /* Vivid (default): Dark Green surface with distinct hues per token type */
+  --code-bg: var(--dk-dark-green);
+  --code-border: transparent;
+  --code-text: #e8ecea;
+  --code-comment: #9aa8a4;
+  --code-punct: #a9bbb6;
+  --code-keyword: #ff9e7a;
+  --code-string: var(--dk-green);
+  --code-function: #ffd479;
+  --code-number: #c9a7ff;
+  --code-property: #7cc7ff;
+  --code-label: var(--dk-green);
+  --code-button: var(--dk-beige);
+  --code-button-border: rgba(255, 254, 249, 0.2);
+}
+body.code-theme-brand {
+  /* Brand: Dark Green with signature colours only, separated by brightness and weight */
+  --code-text: #b4c4c0;
+  --code-punct: #8fa59f;
+  --code-keyword: var(--dk-light-green);
+  --code-function: var(--dk-white);
+  --code-number: var(--dk-beige);
+  --code-property: var(--dk-beige);
+}
+body.code-theme-midnight {
+  /* Midnight: Core Black surface, brightest hues */
+  --code-bg: var(--dk-black);
+  --code-text: #e6e6e1;
+  --code-comment: #8f8e88;
+  --code-punct: #a3a29c;
+  --code-keyword: #ff8f6b;
+  --code-function: #ffcf66;
+  --code-number: #c3a0ff;
+  --code-property: #6fc0ff;
+}
+body.code-theme-light {
+  /* Light: Beige surface with dark, saturated tokens */
+  --code-bg: var(--dk-beige);
+  --code-border: #e6dfc6;
+  --code-text: var(--dk-black);
+  --code-comment: #65635b;
+  --code-punct: var(--dk-blue-grey);
+  --code-keyword: #b02e12;
+  --code-string: #0b6b52;
+  --code-function: #8a5300;
+  --code-number: #6a3db5;
+  --code-property: #1d5f9a;
+  --code-label: #0b6b52;
+  --code-button: var(--dk-black);
+  --code-button-border: rgba(26, 26, 26, 0.2);
+}
+
+.dk-content pre .token.comment,
+.dk-content pre .token.prolog,
+.dk-content pre .token.doctype,
+.dk-content pre .token.cdata {
+  color: var(--code-comment);
+  font-style: italic;
+}
+.dk-content pre .token.punctuation,
+.dk-content pre .token.operator {
+  color: var(--code-punct);
+}
+.dk-content pre .token.string,
+.dk-content pre .token.char,
+.dk-content pre .token.attr-value,
+.dk-content pre .token.regex,
+.dk-content pre .token.url {
+  color: var(--code-string);
+}
+.dk-content pre .token.keyword,
+.dk-content pre .token.atrule,
+.dk-content pre .token.important,
+.dk-content pre .token.selector,
+.dk-content pre .token.tag {
+  color: var(--code-keyword);
+  font-weight: 600;
+}
+.dk-content pre .token.function,
+.dk-content pre .token.builtin,
+.dk-content pre .token.class-name {
+  color: var(--code-function);
+}
+.dk-content pre .token.number,
+.dk-content pre .token.boolean,
+.dk-content pre .token.constant,
+.dk-content pre .token.symbol {
+  color: var(--code-number);
+}
+.dk-content pre .token.variable,
+.dk-content pre .token.attr-name,
+.dk-content pre .token.property,
+.dk-content pre .token.parameter,
+.dk-content pre .token.decorator {
+  color: var(--code-property);
+}
+.dk-content pre .token.deleted {
+  color: var(--code-comment);
+  text-decoration: line-through;
+}
+.dk-content pre .token.inserted {
+  color: var(--code-string);
 }
 .dk-content table {
   width: 100%;
