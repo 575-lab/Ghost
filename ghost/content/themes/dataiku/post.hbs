@@ -1,0 +1,75 @@
+{{!< default}}
+
+{{#post}}
+<main class="dk-main">
+    <article class="dk-article {{post_class}}">
+        <header class="dk-article-header dk-canvas">
+            <p class="dk-label">
+                {{#if primary_tag}}<a href="{{primary_tag.url}}">{{primary_tag.name}}</a>{{else}}{{t "Article"}}{{/if}}
+            </p>
+            <h1 class="dk-article-title">{{title}}</h1>
+            {{#if custom_excerpt}}<p class="dk-article-excerpt">{{custom_excerpt}}</p>{{/if}}
+            <div class="dk-article-meta">
+                <div class="dk-article-avatars">
+                    {{#foreach authors}}
+                        {{#if profile_image}}<img src="{{img_url profile_image size="xs"}}" alt="{{name}}">{{/if}}
+                    {{/foreach}}
+                </div>
+                <div>
+                    <p class="dk-article-authors">{{authors}}</p>
+                    <p class="dk-mono dk-article-date">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMMM YYYY"}}</time>
+                        {{#if reading_time}} · {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}{{/if}}
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        {{#if feature_image}}
+            <figure class="dk-article-image dk-canvas">
+                <img
+                    srcset="{{img_url feature_image size="m"}} 600w,
+                            {{img_url feature_image size="l"}} 960w,
+                            {{img_url feature_image size="xl"}} 1200w,
+                            {{img_url feature_image size="xxl"}} 2000w"
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    src="{{img_url feature_image size="xl"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+                {{#if feature_image_caption}}<figcaption>{{feature_image_caption}}</figcaption>{{/if}}
+            </figure>
+        {{/if}}
+
+        <section class="dk-content dk-canvas">
+            {{content}}
+        </section>
+
+        {{#if tags}}
+            <footer class="dk-article-tags dk-canvas">
+                {{#foreach tags}}<a class="dk-chip" href="{{url}}">{{name}}</a>{{/foreach}}
+            </footer>
+        {{/if}}
+    </article>
+
+    {{#if comments}}
+        <section class="dk-comments dk-canvas">{{comments}}</section>
+    {{/if}}
+</main>
+{{/post}}
+
+{{#if @custom.show_related_posts}}
+    {{#get "posts" include="tags" filter="id:-{{post.id}}" limit="3" as |related|}}
+        {{#if related}}
+            <section class="dk-section dk-section-beige">
+                <div class="dk-container">
+                    <header class="dk-section-header">
+                        <p class="dk-label">{{t "Keep reading"}}</p>
+                        <h2 class="dk-section-title">{{t "More stories"}}</h2>
+                    </header>
+                    <div class="dk-feed">
+                        {{#foreach related}}{{> "post-card"}}{{/foreach}}
+                    </div>
+                </div>
+            </section>
+        {{/if}}
+    {{/get}}
+{{/if}}

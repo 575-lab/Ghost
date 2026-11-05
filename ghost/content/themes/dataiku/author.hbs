@@ -1,0 +1,25 @@
+{{!< default}}
+
+<main class="dk-main">
+    {{#author}}
+    <section class="dk-archive-hero">
+        <div class="dk-container dk-author">
+            {{#if profile_image}}
+                <img class="dk-author-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}">
+            {{/if}}
+            <div>
+                <p class="dk-label dk-label-accent">{{t "Author"}}</p>
+                <h1 class="dk-archive-title">{{name}}</h1>
+                {{#if bio}}<p class="dk-archive-text">{{bio}}</p>{{/if}}
+                <p class="dk-mono dk-archive-count">
+                    {{#if location}}{{location}} · {{/if}}{{plural ../pagination.total empty=(t "No posts") singular=(t "% post") plural=(t "% posts")}}
+                    {{#if website}} · <a href="{{website}}" target="_blank" rel="noopener">{{t "Website"}}</a>{{/if}}
+                </p>
+            </div>
+        </div>
+    </section>
+    {{/author}}
+    <section class="dk-section dk-container">
+        {{> "post-feed"}}
+    </section>
+</main>

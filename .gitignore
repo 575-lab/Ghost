@@ -107,6 +107,8 @@ typings/
 /ghost/content/adapters/scheduling/**/*
 /ghost/content/themes/casper
 /ghost/content/themes/source
+!/ghost/content/themes/dataiku/
+!/ghost/content/themes/dataiku/**
 !/ghost/README.md
 !/ghost/content/**/README.md
 

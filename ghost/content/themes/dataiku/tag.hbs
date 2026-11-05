@@ -1,0 +1,17 @@
+{{!< default}}
+
+<main class="dk-main">
+    {{#tag}}
+    <section class="dk-archive-hero">
+        <div class="dk-container">
+            <p class="dk-label dk-label-accent">{{t "Topic"}}</p>
+            <h1 class="dk-archive-title">{{name}}</h1>
+            {{#if description}}<p class="dk-archive-text">{{description}}</p>{{/if}}
+            <p class="dk-mono dk-archive-count">{{plural ../pagination.total empty=(t "No posts") singular=(t "% post") plural=(t "% posts")}}</p>
+        </div>
+    </section>
+    {{/tag}}
+    <section class="dk-section dk-container">
+        {{> "post-feed"}}
+    </section>
+</main>
