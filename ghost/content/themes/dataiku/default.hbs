@@ -16,7 +16,7 @@
 
     {{ghost_head}}
 </head>
-<body class="{{body_class}} footer-{{#match @custom.footer_surface "Core Black"}}black{{else}}green{{/match}}">
+<body class="{{body_class}} footer-{{#match @custom.footer_surface "Core Black"}}black{{else}}green{{/match}} code-theme-{{#match @custom.code_theme "Brand"}}brand{{else match @custom.code_theme "Midnight"}}midnight{{else match @custom.code_theme "Light"}}light{{else}}vivid{{/match}}">
 
 <div class="dk-viewport">
 
@@ -29,6 +29,13 @@
 </div>
 
 <script src="{{asset "js/main.js"}}" defer></script>
+
+{{#is "post, page"}}
+    {{!-- Syntax highlighting for code cards. The autoloader fetches each language grammar only
+          when a code block on the page uses it. Token colours live in screen.css. --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+{{/is}}
 
 {{ghost_foot}}
 </body>
